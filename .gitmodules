@@ -1,0 +1,6 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/3rendan/apt-podcasts.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/3rendan/apt-podcasts-backend.git
