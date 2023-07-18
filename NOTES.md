@@ -10,8 +10,6 @@
 3. BE integration w FE locally
 4. 
 
-
-
 # 070823
 Stopping for the night.
 

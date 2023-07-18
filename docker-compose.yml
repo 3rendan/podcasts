@@ -3,7 +3,6 @@ services:
   nginx:
     depends_on:
       - client
-      - backend
     build:
       dockerfile: Dockerfile
       context: ./nginx
@@ -15,11 +14,25 @@ services:
       dockerfile: Dockerfile
     restart: on-failure
     container_name: client
-  backend:
-    build: 
-      context: ./backend
+
+
+#  FROM BITO
+yaml
+version: '3'
+services:
+  client:
+    build:
+      context: ./client
       dockerfile: Dockerfile
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
     restart: on-failure
-    container_name: backend
-    environment: 
-      - PODCASTS_DB=mongodb+srv://brendan:nolabola@cluster0.l2eyikv.mongodb.net/
+   server:
+    build:
+      context: ./simple-backend
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    restart: on-failure
