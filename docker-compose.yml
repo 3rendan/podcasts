@@ -1,38 +1,14 @@
-version: "3.3"
+version: '3.8'
 services:
-  nginx:
+  frontend:
+    build: ./client
     depends_on:
-      - client
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
+      - backend
     ports:
-      - "80:80"
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+      - '7878:3000'
     restart: on-failure
-    container_name: client
-
-
-#  FROM BITO
-yaml
-version: '3'
-services:
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    depends_on:
-      - server
+  backend:
+    build: ./simple-backend
     ports:
-      - 3000:3000
-    restart: on-failure
-   server:
-    build:
-      context: ./simple-backend
-      dockerfile: Dockerfile
-    ports:
-      - 5000:5000
+      - '3001:3001'
     restart: on-failure
