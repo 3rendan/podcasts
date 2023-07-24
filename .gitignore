@@ -2,3 +2,8 @@
 /env
 /db
 simple-backend/node_modules/mime/cli.js
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

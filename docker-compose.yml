@@ -1,14 +1,23 @@
-version: '3.8'
+version: '3.3'
 services:
-  frontend:
-    build: ./client
+  nginx:
+    build: 
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports: 
+      - '80:80'
+  client:
+    image: '3rendan/podcasts-fe'
     depends_on:
       - backend
     ports:
-      - '7878:3000'
+      - '3000:3000'
     restart: on-failure
   backend:
-    build: ./simple-backend
+    image: '3rendan/podcasts-be'
     ports:
       - '3001:3001'
+    container_name: 'node'
+    env_file: 
+      - ./env/backend.env
     restart: on-failure
