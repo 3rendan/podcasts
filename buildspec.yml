@@ -3,8 +3,9 @@ phases:
   install:
     runtime-version:
       docker: 18
+      nodejs: 16
     # pre_build:
-    # FOR WHEN I WRITE SOME TESTS
+    # FOR WHEN I WRITE SOME TESTS 
     #   commands:
     #     - echo Build client and backend docker images for testing
     #     - docker build -t 3rendan/podcast-fe-test -f ./client/Dockerfile.dev ./client
