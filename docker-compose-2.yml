@@ -1,11 +1,10 @@
 version: '3.8'
 services:
-  nginx:
-    build: 
-      dockerfile: Dockerfile
-      context: ./nginx
+  app:
+    container_name: nginx
     ports: 
       - '80:80'
+    image: public.ecr.aws/nginx/nginx:perl
   client:
     image: '3rendan/podcasts-fe'
     depends_on:
