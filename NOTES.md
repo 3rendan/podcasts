@@ -30,13 +30,27 @@ Ready to:
 
 # For launch
 1. UI
-   1. Line spacing on mobile blurb
-   2. arrows & indicators on carousel
+   ~~1~~. ~~Line spacing on mobile blurb~~
+   2. ~~arrows~~ & indicators on carousel
 2. Write general tests
-   1. getting and displaying data
-   2. responsive design
-   3. live links
+   1. ~~getting~~ and displaying data~~
+   2. ~~responsive design~~
+   3. ~~live links~~
 3. AWS
    1. connect containers to docker network
-   2. connect to github
+   2. ~~connect to github~~
+
+## 082223
+1. Fully working locally cross app.
+2. Need to Dockerize the containers properly again.
+   1. now simple-backend app is failing to make a container due to *`""/bin/sh -c npm install" did not complete successfully"`* when Dockerfile is run
+      1. attempted to make the container with standard *NOT WINDOWS* syntax and it made no difference
+         1. all times it got to `npm install` and ran > 200s before erroring out
+   2. need to understand if I do need to use windows syntax on aws servers
+      1. hopefully not 
+      2. wouldn't make sense if I'm building on Amazon Linux 2 servers
+         1. maybe you only need to take those steps in local envs
+3. 
+
+
 
