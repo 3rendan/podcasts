@@ -1,26 +1,18 @@
 version: 0.2
 phases:
-  install:
-    runtime-version:
-      docker: 18
-      nodejs: 16
-    # pre_build:
-    # FOR WHEN I WRITE SOME TESTS 
-    #   commands:
-    #     - echo Build client and backend docker images for testing
-    #     - docker build -t 3rendan/podcast-fe-test -f ./client/Dockerfile.dev ./client
-    #     - docker build -t 3rendan/podcast-be-test -f ./simple-backend/Dockerfile.dev ./simple-backend
-    build:
-      commands: 
-        - echo Build started on `date`
-        - echo Building the production Docker image
-        - docker build -t 3rendan/podcast-nginx ./nginx
-        - docker build -t 3rendan/podcast-fe-client ./client
-        - docker build -t 3rendan/podcast-be-backend ./simple-backend
-        - echo "$DOCKER_PW" | dockerr login -u "$DOCKER_ID" --password-stdin
-    post_build: 
-      commands: 
-        - echo Pushing the Docker images...
-        - docker push 3rendan/podcast-nginx 
-        - docker push 3rendan/podcast-fe-client 
-        - docker push 3rendan/podcast-be-backend 
+  pre_build:
+    commands:
+      - echo ${DOCKERHUB_TOKEN} | docker login -u ${DOCKERHUB_USER} --password-stdin
+  build:
+    commands: 
+      - echo Build started on `date`
+      - echo Building the production Docker image
+      - docker build -t podcast-fe:latest ./client
+      - docker build -t podcast-be:latest ./simple-backend
+  post_build: 
+    commands: 
+      - echo Pushing the Docker images...
+      - docker tag  podcast-fe:latest ${DOCKERHUB_USER}/podcast-fe:latest
+      - docker podcast-be:latest ${DOCKERHUB_USER}/podcast-be:latest
+      - docker push ${DOCKERHUB_USER}/podcast-fe:latest
+      - docker push ${DOCKERHUB_USER}/podcast-be:latest
